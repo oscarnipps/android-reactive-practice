@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.reactivepractice.data.Resource.Status" />
+
+        <variable
+            name="status"
+            type="Integer" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="memberViewModel"
+            type="com.example.reactivepractice.data.MemberViewModel" />
+
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MemberLoginActivity">
+
+
+        <!--show the progressbar when the live data resource enum type of LOADING is set-->
+        <ProgressBar
+            android:id="@+id/login_progress_bar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:indeterminateBehavior="cycle"
+            android:visibility="@{memberViewModel.loggedUserResponse.status.ordinal() == status ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/member_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.605" />
+
+        <EditText
+            android:id="@+id/member_username"
+            android:layout_width="323dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="280dp"
+            android:fontFamily="@font/raleway_medium"
+            android:hint="username"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/member_password"
+            android:layout_width="318dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/raleway_medium"
+            android:hint="password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/member_username" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/member_login"
+            android:layout_width="164dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="116dp"
+            android:layout_marginBottom="145dp"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/raleway_medium"
+            android:text="login"
+            android:textColor="#ffffff"
+            app:cornerRadius="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/member_password" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/login_progress_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
