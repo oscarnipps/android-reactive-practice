@@ -1,16 +1,12 @@
-package com.example.reactivepractice;
+package com.example.reactivepractice.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.example.reactivepractice.api.model.MemberApiPostRes;
-import com.example.reactivepractice.data.MemberViewModel;
+import com.example.reactivepractice.R;
 import com.example.reactivepractice.data.Resource;
 import com.example.reactivepractice.databinding.ActivityMemberLoginBinding;
 import com.example.reactivepractice.util.UserLoginUtil;

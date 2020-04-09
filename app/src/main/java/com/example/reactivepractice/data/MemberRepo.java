@@ -107,10 +107,6 @@ public class MemberRepo {
     }*/
 
 
-    public Completable deleteMembersFromDatabase() {
-        return membersDao.deleteAllMembersFromDatabase();
-    }
-
     public List<Long> insertMembersToDatabase(List<Member> members) {
         return membersDao.insertMembersIntoDatabase(members);
     }

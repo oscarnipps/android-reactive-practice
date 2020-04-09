@@ -1,8 +1,10 @@
-package com.example.reactivepractice;
+package com.example.reactivepractice.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.reactivepractice.R;
 
 public class MemberDetailActivity extends AppCompatActivity {
 

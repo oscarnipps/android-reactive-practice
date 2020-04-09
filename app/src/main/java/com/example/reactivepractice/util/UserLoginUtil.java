@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.reactivepractice.MemberListActivity;
-import com.example.reactivepractice.MemberLoginActivity;
+import com.example.reactivepractice.ui.MemberListActivity;
 import com.example.reactivepractice.api.model.MemberApiPostRes;
 import com.example.reactivepractice.data.Resource;
 

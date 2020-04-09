@@ -17,7 +17,7 @@
 
         <activity
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:name=".MemberLoginActivity">
+            android:name=".ui.MemberLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MemberDetailActivity" />
+        <activity android:name=".ui.MemberDetailActivity" />
 
         <activity
-            android:name=".MemberListActivity"
+            android:name=".ui.MemberListActivity"
             android:label="Member">
 
         </activity>

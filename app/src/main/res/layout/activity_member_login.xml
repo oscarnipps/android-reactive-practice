@@ -5,17 +5,16 @@
 
     <data>
 
-        <import type="com.example.reactivepractice.data.Resource.Status" />
+        <import type="android.view.View" />
 
         <variable
             name="status"
             type="Integer" />
 
-        <import type="android.view.View" />
 
         <variable
             name="memberViewModel"
-            type="com.example.reactivepractice.data.MemberViewModel" />
+            type="com.example.reactivepractice.ui.MemberViewModel" />
 
 
     </data>
@@ -24,7 +23,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MemberLoginActivity">
+        tools:context=".ui.MemberLoginActivity">
 
 
         <!--show the progressbar when the live data resource enum type of LOADING is set-->

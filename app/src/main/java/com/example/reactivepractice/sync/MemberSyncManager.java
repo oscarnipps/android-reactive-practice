@@ -49,7 +49,6 @@ public class MemberSyncManager {
     }
 
     public void intializePeriodicWorkRequestsToSyncData() {
-
     }
 
 

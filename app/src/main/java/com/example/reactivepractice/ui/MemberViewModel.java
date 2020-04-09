@@ -1,4 +1,4 @@
-package com.example.reactivepractice.data;
+package com.example.reactivepractice.ui;
 
 import android.app.Application;
 import android.util.Log;
@@ -10,10 +10,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.work.WorkManager;
 
 import com.example.reactivepractice.api.model.MemberApiPostRes;
+import com.example.reactivepractice.data.MemberRepo;
+import com.example.reactivepractice.data.Resource;
 import com.example.reactivepractice.data.model.Member;
 
 import java.util.List;
-import java.util.Objects;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,33 +37,13 @@ public class MemberViewModel extends AndroidViewModel {
         super(application);
         memberRepo = MemberRepo.getInstance(application);
         mWorkManager = WorkManager.getInstance(application);
-    }
-
-    public Flowable<List<Member>> getMembersFromDatabase() {
-        return memberRepo.getMembersFromDatabase();
 
     }
+
 
     public LiveData<Resource<MemberApiPostRes>> getLoggedUserResponse() {
         return loggedUserResponse;
 
-    }
-
-    public void deleteMembersFromDatabase() {
-        compositeDisposable.add(memberRepo.deleteMembersFromDatabase()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableCompletableObserver() {
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "items deleted successfully");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "error deleting items");
-                    }
-                }));
     }
 
 
