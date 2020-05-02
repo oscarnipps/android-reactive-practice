@@ -40,10 +40,8 @@ public class MemberViewModel extends AndroidViewModel {
 
     }
 
-
     public LiveData<Resource<MemberApiPostRes>> getLoggedUserResponse() {
         return loggedUserResponse;
-
     }
 
 
@@ -63,8 +61,6 @@ public class MemberViewModel extends AndroidViewModel {
                         }
                     }
                     //TODO: use utility class to return appropriate error message based on the status code returned by the server
-                    loggedUserResponse.postValue(Resource.error("could not get member from server", null));
-
                     //set error message with data from server
                     return Resource.error("could not get member from server", null);
                 })
@@ -79,7 +75,8 @@ public class MemberViewModel extends AndroidViewModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        loggedUserResponse.postValue(Resource.error("no internet connection", null));
+                        /*loggedUserResponse.postValue(Resource.error("no internet connection", null));*/
+                        loggedUserResponse.postValue(Resource.error(" " + e.getLocalizedMessage(), null));
                     }
                 })
 

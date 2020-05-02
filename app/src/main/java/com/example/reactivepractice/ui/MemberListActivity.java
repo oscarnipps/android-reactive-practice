@@ -67,7 +67,7 @@ public class MemberListActivity extends AppCompatActivity {
         initializeRecyclerViewAndAdapter();
 
         //work manager to sync data from the server
-        /*initializeSyncManager();*/
+        initializeSyncManager();
 
         //bind the integer value of the resource enum which would be used to toggle the progress bar visibility
         membersListBinding.setStatus(Resource.Status.LOADING.ordinal());
@@ -80,21 +80,33 @@ public class MemberListActivity extends AppCompatActivity {
 
     }
 
-    /*private void initializeSyncManager() {
+    private void initializeSyncManager() {
         memberSyncManager = new MemberSyncManager(getApplicationContext());
-        memberSyncManager.initializeOneTimeWorkRequestsToSyncData(MemberWorker.class);
+        /*memberSyncManager.initializeOneTimeWorkRequestsToSyncData(MemberWorker.class);*/
 
-        WorkManager.getInstance(this).getWorkInfosByTagLiveData(Constants.MEMBERS_WORK_PUSH_REQUEST_TAG).observe(this,new androidx.lifecycle.Observer<List<WorkInfo>>() {
+        WorkManager.getInstance(this).getWorkInfosByTagLiveData(Constants.MEMBERS_WORK_GET_REQUEST_TAG).observe(this,new androidx.lifecycle.Observer<List<WorkInfo>>() {
             @Override
             public void onChanged(List<WorkInfo> workInfos) {
+                // If there are no matching work info, do nothing
                 if (workInfos == null || workInfos.isEmpty()) {
                     return;
-                } else {
-
                 }
+
+                // We only care about the first output status.
+                // Every continuation has only one worker tagged TAG_OUTPUT
+                WorkInfo workInfo = workInfos.get(0);
+
+                String state = workInfo.getState().toString();
+                if (state.equals("SUCCEEDED")) {
+                    String finished = workInfo.getOutputData().getString("member_result");
+                    Log.d(TAG, "error getting memeber with state -------------> " + state);
+                    Log.d(TAG, "error getting memeber with finished string -------------> " + finished);
+                    Toast.makeText(MemberListActivity.this, "state : " + state + "   message : " + finished, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-    }*/
+    }
 
     private void initializeRecyclerViewAndAdapter() {
         //adapter
@@ -119,8 +131,9 @@ public class MemberListActivity extends AppCompatActivity {
             //delete all
             memberListViewModel.deleteMembersFromDatabase();
         } else {
-            memberListViewModel.getMembersFromServer();
+            /*memberListViewModel.getMembersFromServer();*/
             /*memberSyncManager.initializeOneTimeWorkRequestsToSyncData(MemberPostWorker.class,MemberWorker.class);*/
+            memberSyncManager.initializeOneTimeWorkRequestsToSyncData(MemberWorker.class);
         }
         return super.onOptionsItemSelected(item);
     }

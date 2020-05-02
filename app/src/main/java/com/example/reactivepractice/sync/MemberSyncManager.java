@@ -9,6 +9,7 @@ import androidx.work.ExistingWorkPolicy;
 import androidx.work.ListenableWorker;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.RxWorker;
 import androidx.work.WorkManager;
 import androidx.work.Worker;
 
@@ -38,7 +39,7 @@ public class MemberSyncManager {
             Constraints constraints = new Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build();
-            OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(worker.asSubclass(Worker.class))
+            OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(worker.asSubclass(RxWorker.class))
                     .setConstraints(constraints)
                     //use the class name as the tag which would be usd to observe the work's progress
                     .addTag(worker.getSimpleName())

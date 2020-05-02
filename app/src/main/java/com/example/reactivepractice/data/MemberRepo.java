@@ -40,17 +40,14 @@ public class MemberRepo {
                 }
             }
         }
-
         return mInstance;
     }
 
 
     private MemberRepo(Context applicationContext) {
-        MemberDatabase membersDatabase = MemberDatabase.getInstance(applicationContext);
-        membersDao = membersDatabase.getMemberDao();
+        membersDao = MemberDatabase.getInstance(applicationContext).getMemberDao();
         //get api service
         memberApiService = ApiClient.getApiClient(applicationContext).create(MemberApiService.class);
-
     }
 
     public Flowable<List<Member>> getMembersFromDatabase() {

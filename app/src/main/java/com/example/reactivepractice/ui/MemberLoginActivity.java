@@ -39,7 +39,7 @@ public class MemberLoginActivity extends AppCompatActivity {
         //bind the integer value of the resource enum which would be used to toggle the progress bar visibility
         memberLoginBinding.setStatus(Resource.Status.LOADING.ordinal());
 
-        //subscribe to the log in result
+        //subscribe to the result
         memberViewModel.getLoggedUserResponse().observe(this, response -> {
             UserLoginUtil.handleResponse(response,MemberLoginActivity.this);
         });
